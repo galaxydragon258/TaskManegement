@@ -29,11 +29,11 @@ const getStatisctics = async(req,res)=>{
             count:{$sum:1}
         }}
 
-        ])
+        ]);
 
 
      
-            Data:priority   const totalTask = await Task.countDocuments({user:userId})
+        const totalTask = await Task.countDocuments({user:userId})
 
         res.status(200).json({
             status:true,
