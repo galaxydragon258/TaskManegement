@@ -6,6 +6,8 @@ app.use(express.json());
 const {protect} = require('./utils/jwt')
 const {login,getMe} =require('./controler/loginController');
 const {register} = require('./controler/registrationController');
+const {router} = require('./routes/taskRoute');
+const {getStatisctics} = require('./utils/statistics');
 
 connectDB();
 
@@ -15,7 +17,7 @@ app.post('/login', login);
 
 app.get('/get',protect,getMe);
 
-
+app.use('/tasks',router);
 
 
 

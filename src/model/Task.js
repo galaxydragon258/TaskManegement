@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const User = require('./User')
 
 const taskSchema = new mongoose.Schema({
     title: {
@@ -15,9 +15,8 @@ const taskSchema = new mongoose.Schema({
   },
   status:{
     type:String,
-    enum:['pending','In-Progress','Completed'],
+    enum:['pending','In_Progress','Completed'],
     default:'pending'
-
   },
   priority:{
     type:String,

@@ -14,6 +14,7 @@ const generateToken = (userId)=>{
 const protect = async (req,res,next) =>{///auth middleware
     let token ='';
 
+    console.log('protect MiddleWare working')
     if(req.headers.authorization?.startsWith('Bearer')){
         token = req.headers.authorization.split(' ')[1]
         console.log(token)

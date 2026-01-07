@@ -17,7 +17,6 @@ const register = async (req,res)=>{
         password
     })
 
-    
 
     const token = generateToken(user._id);
 
