@@ -1,0 +1,117 @@
+/* Add these styles to your existing auth.css */
+
+/* Form rows for side-by-side inputs */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Form hints */
+.form-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #718096;
+}
+
+/* Password strength meter */
+.password-strength {
+    margin-top: 8px;
+}
+
+.strength-bar {
+    height: 4px;
+    background-color: #e2e8f0;
+    border-radius: 2px;
+    margin-bottom: 4px;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.strength-text {
+    font-size: 12px;
+    color: #718096;
+}
+
+/* Checkbox group */
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    margin: 30px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 12px;
+    margin-top: 4px;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+/* Links within forms */
+.link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Loading animation for button */
+.btn .loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+    vertical-align: middle;
+}
+
+/* Responsive adjustments for form rows */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .form-row .form-group {
+        margin-bottom: 0;
+    }
+    
+    .checkbox-group label {
+        font-size: 13px;
+    }
+}
+
+/* Focus styles for checkbox */
+.checkbox-group input[type="checkbox"]:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Validation styles */
+input:valid:not(:placeholder-shown) {
+    border-color: #68d391 !important;
+}
+
+input:invalid:not(:placeholder-shown) {
+    border-color: #fc8181 !important;
+}

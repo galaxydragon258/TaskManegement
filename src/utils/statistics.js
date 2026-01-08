@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const getStatisctics = async(req,res)=>{
         try{
+
+        console.log(req.params)
         const userId = req.user._id;
 
 
@@ -35,24 +37,27 @@ const getStatisctics = async(req,res)=>{
      
         const totalTask = await Task.countDocuments({user:userId})
 
-        res.status(200).json({
-            status:true,
-        })
+        console.log("totalTask")
+
+        
 
 
         const overdue = await Task.countDocuments({
             user:userId,
             dueDate:{$lt: new Date},
-            status:{$ne: Completed}
+            status:{$ne: "completed"}
 
         })
+            console.log("overdue")
+
+        
 
 
         const format = {
             Status:{
                 pending:0,
-                In_Progress:0,
-                Completed   :0
+                in_progress:0,
+                completed :0
             },
 
 
@@ -69,12 +74,14 @@ const getStatisctics = async(req,res)=>{
 
         }
 
+    
+        
         status.forEach(stats=>{
             if(format.Status.hasOwnProperty(stats._id)){
                 format.Status[stats._id] = stats.count
             }
         })///emd
-
+    
 
         priority.forEach(prio=>{
 
@@ -82,6 +89,17 @@ const getStatisctics = async(req,res)=>{
                 format.Priority[prio._id] = prio.count
             }
         })
+        
+            console.log(format)
+
+
+         res.status(200).json({
+                success:true,
+                data:format
+
+        })
+
+
     }
     catch(error){
         res.status(400).json({

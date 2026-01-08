@@ -15,8 +15,7 @@ router.use(protect);
 
 router.route('/')
 .get(getTask)
-.post(createTask);
-
+.post(createTask)
 
 router.route('/test')
 .get(getStatisctics);

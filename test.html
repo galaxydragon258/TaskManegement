@@ -1,0 +1,42 @@
+<!-- test-api.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test API Layer</title>
+</head>
+<body>
+    <h1>Testing API Service Layer</h1>
+    <button id="btn">Test Health Endpoint</button>
+    <div id="result">testing</div>
+    
+    <script type="module">
+    
+        import {apiRequest} from './public/js/api.js'
+
+
+        document.getElementById('btn').addEventListener('click',()=>{
+            testHealth();
+        })
+
+        
+        async function testHealth() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                // This should work even without token (public endpoint)
+                const response = await apiRequest('/');
+                resultDiv.innerHTML = `
+                    <h3>✅ Success!</h3>
+                    <pre>${JSON.stringify(response, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <h3>❌ Failed!</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
