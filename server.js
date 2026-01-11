@@ -10,37 +10,71 @@ const {router} = require('./src/routes/taskRoute');
 const {getStatisctics} = require('./src/utils/statistics');
 const cors = require('cors');
 
-
 app.use(cors());
-connectDB();
 
+// ===== HEALTH CHECK ENDPOINT =====
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'TaskFlow API',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
 
+// ===== BASIC ROUTES =====
+app.get('/', (req, res) => {
+  res.json({
+    message: 'TaskFlow API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      register: '/register',
+      login: '/login',
+      tasks: '/tasks'
+    }
+  });
+});
+
+// Test endpoint
+app.get('/hi', (req, res) => {
+  res.json({message: "hello"});
+});
+
+// ===== AUTH ROUTES =====
 app.post('/register', register);
 app.post('/login', login);
+app.get('/get', protect, getMe);
 
-app.get('/get',protect,getMe);
+// ===== TASK ROUTES =====
+app.use('/tasks', router);
 
-app.use('/tasks',router);
+// ===== ERROR HANDLING =====
+// 404 handler
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
 
-app.get('/hi',(req,res)=>{
-  res.json({message:"hello"})
-})
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Server Error:', err);
+  res.status(500).json({ 
+    error: 'Internal server error',
+    message: process.env.NODE_ENV === 'development' ? err.message : undefined
+  });
+});
 
-
-
-
-
-app.get('/',(req,res)=>{
-  res.status(201).json({
-    ok:true
-  })
-})
-
-
-
-
+// ===== START SERVER =====
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`✅ Server running on http://localhost:${PORT}`);
-  console.log(`📋 Health check: http://localhost:${PORT}/api/health`);
+
+// Connect to database FIRST, then start server
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`✅ Server running on port ${PORT}`);
+    console.log(`📋 Health check: http://localhost:${PORT}/api/health`);
+    console.log(`🌍 API URL: http://localhost:${PORT}`);
+  });
+}).catch(error => {
+  console.error('❌ Failed to start server:', error);
+  process.exit(1);
 });
