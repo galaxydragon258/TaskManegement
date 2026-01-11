@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     redirectIfAuthenticated();
 
     ///check if there is data in the localStorage para hinde na mag login si user
-
-
     
 })
 

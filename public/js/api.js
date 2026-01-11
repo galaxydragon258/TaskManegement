@@ -1,6 +1,6 @@
 //SERVICEE LAYER DEDICATE TO HANDLE COMMUNICATION SA BACKEND
 
-const API_BASE_URL = 'http://localhost:3000/';
+const API_BASE_URL = 'taskmanegement-production.up.railway.app/';
 
 //Token Management/
 const getToken = ()=>{
