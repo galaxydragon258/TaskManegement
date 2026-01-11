@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-const {connectDB} = require('./database');
+const {connectDB} = require('./src/database');
 app.use(express.json());
-const {protect} = require('./utils/jwt')
-const {login,getMe} =require('./controler/loginController');
-const {register} = require('./controler/registrationController');
-const {router} = require('./routes/taskRoute');
-const {getStatisctics} = require('./utils/statistics');
+const {protect} = require('./src/utils/jwt')
+const {login,getMe} =require('./src/controler/loginController');
+const {register} = require('./src/controler/registrationController');
+const {router} = require('./src/routes/taskRoute');
+const {getStatisctics} = require('./src/utils/statistics');
 const cors = require('cors');
 
 
