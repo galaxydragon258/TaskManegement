@@ -17,7 +17,7 @@ router.route('/')
 .get(getTask)
 .post(createTask)
 
-router.route('/test')
+router.route('/stats')
 .get(getStatisctics);
 
 

@@ -17,8 +17,8 @@ const setUser = (user) =>{
 }
 
 
-const getUser = () =>{
-    localStorage.getItem('taskflow_user')
+const getUser = () => {
+    return localStorage.getItem('taskflow_user')
 }
 
 const removeToken = () => {
@@ -27,6 +27,7 @@ const removeToken = () => {
 };
 
 ///APII REQUEST
+
 
 const apiRequest = async(endpoint,options={})=>{
 
@@ -51,7 +52,10 @@ const apiRequest = async(endpoint,options={})=>{
     const config = {
             method:method.toUpperCase(),
             headers:header,
+            
     }
+
+
     if(data && ['POST','PUT','PATCH'].includes(config.method)){
         config.body = JSON.stringify(data)
     }   
@@ -72,7 +76,7 @@ const apiRequest = async(endpoint,options={})=>{
 
     console.log(result)
 
-    if(!result.ok){
+    if(!result.success){
 
         if(response.status === 401 ){
             removeToken();

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Render Test</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial; padding: 20px; }
+        .task-card { 
+            border: 2px solid blue; 
+            padding: 20px; 
+            margin: 10px;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Render Test</h1>
+    <div id="tasksContainer"></div>
+    
+    <script>
+        // SIMPLE TEST - No modules, no imports
+        function renderTasks(tasks) {
+            console.log('🔄 Rendering', tasks.length, 'tasks');
+            
+            const container = document.getElementById('tasksContainer');
+            if (!container) {
+                console.error('❌ Container not found!');
+                return;
+            }
+            
+            if (tasks.length === 0) {
+                container.innerHTML = '<p>No tasks</p>';
+                return;
+            }
+            
+            const html = tasks.map(task => `
+                <div class="task-card">
+                    <h3>${task.title}</h3>
+                    <p>${task.description || 'No description'}</p>
+                    <small>Priority: ${task.priority}</small>
+                </div>
+            `).join('');
+            
+            container.innerHTML = html;
+            console.log('✅ Tasks rendered');
+        }
+        
+        // Test data
+        const testTasks = [
+            { 
+                _id: '1', 
+                title: 'Test Task 1', 
+                description: 'First test', 
+                priority: 'high',
+                status: 'pending'
+            },
+            { 
+                _id: '2', 
+                title: 'Test Task 2', 
+                description: 'Second test', 
+                priority: 'medium',
+                status: 'completed' 
+            }
+        ];
+        
+        // Render on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Page loaded');
+            renderTasks(testTasks);
+        });
+    </script>
+</body>
+</html>

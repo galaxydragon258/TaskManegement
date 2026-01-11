@@ -34,7 +34,6 @@ const getStatisctics = async(req,res)=>{
         ]);
 
 
-     
         const totalTask = await Task.countDocuments({user:userId})
 
         console.log("totalTask")
@@ -96,7 +95,6 @@ const getStatisctics = async(req,res)=>{
          res.status(200).json({
                 success:true,
                 data:format
-
         })
 
 
