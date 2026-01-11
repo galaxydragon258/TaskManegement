@@ -22,19 +22,10 @@ app.get('/get',protect,getMe);
 
 app.use('/tasks',router);
 
+app.get('/hi',(req,res)=>{
+  res.json({message:"hello"})
+})
 
-app.get('/api/health', (req, res) => {
-  try {
-    res.json({
-      status: 'healthy',
-      message: 'API is running',
-      timestamp: new Date().toISOString()
-    });
-  } catch (error) {
-    // Even if JSON fails, send plain text
-    res.status(200).send('OK');
-  }
-});
 
 
 
