@@ -1,6 +1,6 @@
 //SERVICEE LAYER DEDICATE TO HANDLE COMMUNICATION SA BACKEND
 
-const API_BASE_URL = 'https://task-manegement-seven.vercel.app/';
+const API_BASE_URL = 'https://task-manegement-syqu.vercel.app/';
 
 //Token Management/
 const getToken = ()=>{
