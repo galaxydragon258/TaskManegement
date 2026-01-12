@@ -61,7 +61,7 @@ import {getToken,setToken,removeToken,apiRequest,getUser,setUser} from './api.js
  
  export const  logout = async()=>{
     removeToken();
-    window.location.href='../public/index.html'
+    window.location.href='../../index.html'
 
  }
 
